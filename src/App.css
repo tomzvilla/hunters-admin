@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.mainContent { 
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
