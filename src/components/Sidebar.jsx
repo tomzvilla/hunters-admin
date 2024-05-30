@@ -14,6 +14,11 @@ import { uiActions } from '../store/uiSlice';
 
 const drawerWidth = 300;
 
+const list = [
+    { text: 'Inicio', to: '/'},
+    { text: 'Listado Municiones', to: '/ammoList'},
+];
+
 const Sidebar = () => {
     const dispatch = useDispatch();
     const showNavbarMenu = useSelector(state => state.ui.sidebar);
@@ -25,17 +30,17 @@ const Sidebar = () => {
     const DrawerList = (
         <Box sx={{ overflow: 'auto' }} onClick={toggleDrawer()}>
             <List>
-                {['Inicio', 'Listado Municiones'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <Link to='/ammoList'>
-                        <ListItemText primary={text} />
-                    </Link>
-                    </ListItemButton>
-                </ListItem>
+                {list.map((item, index) => (
+                    <Link to={item.to}>
+                        <ListItem key={item.text} disablePadding>
+                            <ListItemButton>
+                            <ListItemIcon>
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            </ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItemButton>
+                        </ListItem>
+                </Link>
                 ))}
             </List>
         </Box>
