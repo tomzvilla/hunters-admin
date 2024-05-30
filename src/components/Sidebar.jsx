@@ -6,18 +6,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../store/uiSlice';
-
+import HomeIcon from '@mui/icons-material/Home';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import HomeWorkIcon from '@mui/icons-material/HomeWork';
 const drawerWidth = 300;
 
 const list = [
-    { text: 'Inicio', to: '/'},
-    { text: 'Listado Municiones', to: '/ammoList'},
-    { text: 'Proveedores', to: '/supplierList'},
+    { text: 'Inicio', to: '/', icon: HomeIcon},
+    { text: 'Listado Municiones', to: '/ammoList', icon: AttachMoneyIcon},
+    { text: 'Proveedores', to: '/supplierList', icon: HomeWorkIcon},
 ];
 
 const Sidebar = () => {
@@ -32,16 +32,16 @@ const Sidebar = () => {
         <Box sx={{ overflow: 'auto' }} onClick={toggleDrawer()}>
             <List>
                 {list.map((item, index) => (
-                    <Link to={item.to}>
-                        <ListItem key={item.text} disablePadding>
+                    <Link to={item.to} key={item.text}>
+                        <ListItem  disablePadding>
                             <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                                <item.icon />
                             </ListItemIcon>
                                 <ListItemText primary={item.text} />
                             </ListItemButton>
                         </ListItem>
-                </Link>
+                    </Link>
                 ))}
             </List>
         </Box>
