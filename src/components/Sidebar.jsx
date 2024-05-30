@@ -17,6 +17,7 @@ const drawerWidth = 300;
 const list = [
     { text: 'Inicio', to: '/'},
     { text: 'Listado Municiones', to: '/ammoList'},
+    { text: 'Proveedores', to: '/supplierList'},
 ];
 
 const Sidebar = () => {

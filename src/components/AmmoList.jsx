@@ -4,23 +4,14 @@ import fetchAmmo from '../fetchData/fetchAmmo';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
-    { 
-        field: 'description',
-        headerName: 'Descripción',
-        width: 300,
-    },
+    { field: 'description', headerName: 'Descripción', width: 450 },
     { field: 'brand', headerName: 'Marca', width: 100 },
-    { field: 'caliber', headerName: 'Calibre', width: 130 },
+    { field: 'caliber', headerName: 'Calibre', width: 170 },
     { field: 'ammoType', headerName: 'Tipo', width: 80 },
-    { field: 'grammage', headerName: 'Gramaje', width: 50 },
-    { field: 'ammountPerBox', headerName: 'Caja', width: 50 },
+    { field: 'grammage', headerName: 'Gramaje', width: 70 },
+    { field: 'ammountPerBox', headerName: 'Caja', width: 70 },
     { field: 'unitPrice', headerName: 'Precio USD', width: 100 },
-    { 
-        field: 'argPrice', 
-        headerName: 'Precio ARG', 
-        width: 100,
-        valueGetter: (value, row) => parseInt(row.unitPrice) * 1200
-    },
+    { field: 'argPrice', headerName: 'Precio ARG', width: 100 },
 ];
 
 const AmmoList = () => {
@@ -33,6 +24,7 @@ const AmmoList = () => {
 
     useEffect(() => {
         if (data) {
+            console.log(data)
             const newData = data.map(row => ({
                 id: row._id,
                 description: `${row.description} ${row.brand.name} ${row.caliber.size} ${row.ammoType.type}`,
@@ -42,7 +34,7 @@ const AmmoList = () => {
                 grammage: row.grammage,
                 ammountPerBox: row.ammountPerBox,
                 unitPrice: row.unitPrice,
-                argPrice: parseInt(row.unitPrice) * 1200,
+                argPrice: row.argPrice,
             }));
             setFormattedData(newData);
         }
@@ -55,9 +47,10 @@ const AmmoList = () => {
         return <p>ERROR</p>
     }
     return (
-        <div style={{ height: 600, maxWidth: '100vw' }}>
+        <div style={{ height: 700, width: 1200, maxWidth: '100vw' }}>
             <h2>Lista de precios | Municiones </h2>
             <DataGrid
+                sx={{ fontSize: '1.2rem'}}
                 rows={formattedData}
                 columns={columns}
                 initialState={{
@@ -65,7 +58,7 @@ const AmmoList = () => {
                     paginationModel: { page: 0, pageSize: 20 },
                     },
                 }}
-                pageSizeOptions={[5, 10]}
+                pageSizeOptions={[10, 20]}
             />
         </div>
     )

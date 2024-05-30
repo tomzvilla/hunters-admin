@@ -7,6 +7,7 @@ import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 // pages
 import AmmoList from './components/AmmoList'
+import SupplierList from './components/SupplierList'
 import Home from './pages/Home';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Home/> } />
           <Route path="ammoList" element={ <AmmoList/>} />
+          <Route path="supplierList" element={ <SupplierList/>} />
         </Routes>
       </div>
     </div>
