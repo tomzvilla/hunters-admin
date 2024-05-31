@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import axios from '../api/axios';
+import { axiosPrivate } from '../api/api';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import fetchSupplier from '../fetchData/fetchSupplier';
+import { fetchSupplier } from '../api/api';
 import { DataGrid } from '@mui/x-data-grid';
 import { DialogActions, DialogContent, DialogContentText, DialogTitle, Button, TextField } from '@mui/material';
-import FormDialog from './Dialog';
+import FormDialog from './FormDialog';
 import { supplierActions } from '../store/supplierSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -42,7 +42,7 @@ const SupplierList = () => {
 
     const saveSupplier = async () => {
         try {
-            await axios.post('/v1/supplier', {
+            await axiosPrivate.post('/v1/supplier', {
                 _id: selectedSupplier._id,
                 usdExchangeRate: selectedSupplier.usdExchangeRate,
             });

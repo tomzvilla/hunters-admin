@@ -7,10 +7,6 @@ const FormDialog = ({ submitHandler, children }) => {
     const dispatch = useDispatch();
     const showDialog = useSelector(state => state.supplier.dialogOpen);
 
-    const toggleDialogWindow = () => () => {
-        
-    };
-
     return (
         <>
         <Dialog

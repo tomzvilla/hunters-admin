@@ -1,7 +1,5 @@
 import './App.css'
 import { Routes, Route } from "react-router-dom"
-
-
 // components
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
@@ -9,18 +7,30 @@ import Sidebar from './components/Sidebar'
 import AmmoList from './components/AmmoList'
 import SupplierList from './components/SupplierList'
 import Home from './pages/Home';
+import Login from './pages/Login';
+import RequireAuth from './components/RequireAuth'
+import NotRequireAuth from './components/NotRequireAuth'
+import PersistLogin from './components/PersistLogin'
+import { useSelector } from 'react-redux'
 
 function App() {
-
+  const user = useSelector(state => state.auth.user);
   return (
     <div className="app">
       <Navbar/>
-      <Sidebar/>
+      {Object.keys(user).length > 0 && <Sidebar/>}
       <div className='mainContent'>
         <Routes>
-          <Route path="/" element={ <Home/> } />
-          <Route path="ammoList" element={ <AmmoList/>} />
-          <Route path="supplierList" element={ <SupplierList/>} />
+            <Route element={<PersistLogin />}>
+              <Route element={<NotRequireAuth />}>
+                <Route path="/login" element={<Login/>} />
+              </Route>
+              <Route element={<RequireAuth />}> 
+                <Route path="/" element={<Home/> } />
+                <Route path="/ammoList" element={<AmmoList/>} />
+                <Route path="/supplierList" element={<SupplierList/>} />
+              </Route>
+            </Route>
         </Routes>
       </div>
     </div>

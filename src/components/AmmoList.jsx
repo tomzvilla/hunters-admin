@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import fetchAmmo from '../fetchData/fetchAmmo';
+import { fetchAmmo } from '../api/api';
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
@@ -24,7 +24,6 @@ const AmmoList = () => {
 
     useEffect(() => {
         if (data) {
-            console.log(data)
             const newData = data.map(row => ({
                 id: row._id,
                 description: `${row.description} ${row.brand.name} ${row.caliber.size} ${row.ammoType.type}`,
