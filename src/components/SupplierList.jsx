@@ -3,8 +3,9 @@ import { axiosPrivate } from '../api/api';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { fetchSupplier } from '../api/api';
 import { DataGrid } from '@mui/x-data-grid';
-import { DialogActions, DialogContent, DialogContentText, DialogTitle, Button, TextField } from '@mui/material';
+import { DialogActions, DialogContent, DialogContentText, DialogTitle, Button, TextField, Typography } from '@mui/material';
 import FormDialog from './FormDialog';
+import Spinner from './Spinner';
 import { supplierActions } from '../store/supplierSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -55,14 +56,16 @@ const SupplierList = () => {
     }
     
     if(isPending) {
-        return <p>Loading...</p>
+        return <Spinner loading={isPending} />
     }
     if(error) {
         return <p>ERROR</p>
     }
     return (
         <div style={{ height: 500, width: 500, maxWidth: '100vw' }}>
-            <h2>Lista de proveedores | Cotización USD </h2>
+            <Typography variant="h5" component="div" style={{lineHeight: '1.5', marginBottom: '1rem'}}>
+                Lista de proveedores | Cotización USD 
+            </Typography>
             <DataGrid
                 sx={{ fontSize: '1.2rem'}}
                 rows={formattedData}

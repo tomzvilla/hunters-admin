@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { refreshToken } from '../api/api'
 import { useSelector } from "react-redux"
+import Spinner from "./Spinner"
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true);
     const refresh = () => refreshToken();
@@ -26,7 +27,7 @@ const PersistLogin = () => {
   return (
     <>
         {isLoading 
-            ? <p>CARGANDO</p> 
+            ? <Spinner loading={isLoading} />
               : 
               <Outlet />
         }

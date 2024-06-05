@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAmmo } from '../api/api';
 import { DataGrid } from '@mui/x-data-grid';
+import { Typography } from '@mui/material';
+import Spinner from './Spinner';
 
 const columns = [
     { field: 'description', headerName: 'Descripción', width: 450 },
@@ -40,14 +42,16 @@ const AmmoList = () => {
     }, [data]);
     
     if(isPending) {
-        return <p>Loading...</p>
+        return <Spinner loading={isPending} />;
     }
     if(error) {
         return <p>ERROR</p>
     }
     return (
         <div style={{ height: 700, width: 1200, maxWidth: '100vw' }}>
-            <h2>Lista de precios | Municiones </h2>
+            <Typography variant="h4" component="div" style={{lineHeight: '1.5'}}>
+                Lista de precios | Municiones
+            </Typography>
             <DataGrid
                 sx={{ fontSize: '1.2rem'}}
                 rows={formattedData}
