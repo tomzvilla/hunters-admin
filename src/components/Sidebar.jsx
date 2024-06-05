@@ -12,12 +12,16 @@ import { uiActions } from '../store/uiSlice';
 import HomeIcon from '@mui/icons-material/Home';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 const drawerWidth = 300;
 
 const list = [
-    { text: 'Inicio', to: '/', icon: HomeIcon},
-    { text: 'Listado Municiones', to: '/ammoList', icon: AttachMoneyIcon},
-    { text: 'Proveedores', to: '/supplierList', icon: HomeWorkIcon},
+    { text: 'Inicio', to: '/', icon: HomeIcon },
+    { text: 'Listado Municiones', to: '/ammoList', icon: AttachMoneyIcon },
+    { text: 'Proveedores', to: '/supplierList', icon: HomeWorkIcon },
+    { text: 'Marcas', to: '/brandList', icon: AddBoxIcon },
+    { text: 'Calibres', to: '/caliberList', icon: AddBoxIcon },
+    { text: 'Tipos Municiones', to: '/ammoTypeList', icon: AddBoxIcon },
 ];
 
 const Sidebar = () => {

@@ -46,4 +46,31 @@ export const fetchSupplier = async () => {
     } catch (err) {
         throw err;
     }
-} 
+}
+
+export const fetchAmmoType = async () => {
+    try {
+        const response = await axiosPrivate.get('/v1/ammo-type');
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export const fetchBrand = async () => {
+    try {
+        const response = await axiosPrivate.get('/v1/brand');
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
+}
+
+export const fetchCaliber = async () => {
+    try {
+        const response = await axiosPrivate.get('/v1/caliber');
+        return response.data;
+    } catch (err) {
+        throw err;
+    }
+}

@@ -1,17 +1,20 @@
-import './App.css'
-import { Routes, Route } from "react-router-dom"
+import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { useSelector } from 'react-redux';
 // components
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar'
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
 // pages
-import AmmoList from './components/AmmoList'
-import SupplierList from './components/SupplierList'
+import AmmoList from './components/AmmoList';
+import SupplierList from './components/SupplierList';
 import Home from './pages/Home';
 import Login from './pages/Login';
-import RequireAuth from './components/RequireAuth'
-import NotRequireAuth from './components/NotRequireAuth'
-import PersistLogin from './components/PersistLogin'
-import { useSelector } from 'react-redux'
+import RequireAuth from './components/RequireAuth';
+import NotRequireAuth from './components/NotRequireAuth';;
+import PersistLogin from './components/PersistLogin';
+import AmmoTypeList from './components/Lists/AmmoTypeList';
+import BrandList from './components/Lists/BrandList';
+import CaliberList from './components/Lists/CaliberList';
 
 function App() {
   const user = useSelector(state => state.auth.user);
@@ -29,6 +32,9 @@ function App() {
                 <Route path="/" element={<Home/> } />
                 <Route path="/ammoList" element={<AmmoList/>} />
                 <Route path="/supplierList" element={<SupplierList/>} />
+                <Route path="/ammoTypeList" element={<AmmoTypeList/>} />
+                <Route path="/brandList" element={<BrandList/>} />
+                <Route path="/caliberList" element={<CaliberList/>} />
               </Route>
             </Route>
         </Routes>
