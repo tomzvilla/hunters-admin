@@ -15,6 +15,7 @@ import PersistLogin from './components/PersistLogin';
 import AmmoTypeList from './components/Lists/AmmoTypeList';
 import BrandList from './components/Lists/BrandList';
 import CaliberList from './components/Lists/CaliberList';
+import AmmoRegistrationForm from './components/Registrations/AmmoRegistrationForm';
 
 function App() {
   const user = useSelector(state => state.auth.user);
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/ammoTypeList" element={<AmmoTypeList/>} />
                 <Route path="/brandList" element={<BrandList/>} />
                 <Route path="/caliberList" element={<CaliberList/>} />
+                <Route path="/createAmmo" element={<AmmoRegistrationForm/>} />
               </Route>
             </Route>
         </Routes>

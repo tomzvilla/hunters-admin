@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { fetchBrand } from '../../api/api';
 import { useQuery } from '@tanstack/react-query';
 import { DataGrid } from '@mui/x-data-grid';
@@ -15,20 +15,10 @@ const BrandList = () => {
     const { isPending, error, data } = useQuery({
         queryKey: ['brand'],
         queryFn: fetchBrand,
+        select: data => { return data.map(row => ({ id: row._id, ...row })).sort((a, b) => a.name.localeCompare(b.name)) },
     })
 
-    const [formattedData, setFormattedData] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
-
-    useEffect(() => {
-        if (data) {
-            const newData = data.map(row => ({
-                id: row._id,
-                ...row,
-            })).sort((a, b) => a.name.localeCompare(b.name));
-            setFormattedData(newData);
-        }
-    }, [data]);
 
     if(isPending) {
         return <Spinner loading={isPending} />
@@ -43,7 +33,7 @@ const BrandList = () => {
             </Typography>
             <DataGrid
                 sx={{ fontSize: '1.2rem' }}
-                rows={formattedData}
+                rows={data}
                 columns={columns}
                 initialState={{
                         pagination: {

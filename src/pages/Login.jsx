@@ -37,9 +37,7 @@ const Login = () => {
                 navigate(from, { replace: true })
             }
         } catch (err) {
-            //TODO error handling
-            console.log(err);
-            const status = err.code ?? err.response.code;
+            const status =  err.response.status ?? err.code;
             switch(status) {
                 case 400:
                     Swal.fire({
@@ -49,6 +47,7 @@ const Login = () => {
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#00ACE6',
                     });
+                    break;
                 case 401:
                     Swal.fire({
                         title: 'Oops! Hubo un error',
@@ -57,6 +56,7 @@ const Login = () => {
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#00ACE6',
                     });
+                    break;
                 case 403:
                     Swal.fire({
                         title: 'Oops! Hubo un error',
@@ -65,6 +65,7 @@ const Login = () => {
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#00ACE6',
                     });
+                    break;
                 default:
                     Swal.fire({
                         title: 'Oops! Hubo un error',
@@ -73,6 +74,7 @@ const Login = () => {
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#00ACE6',
                     });
+                    break;
             }
         }
     };

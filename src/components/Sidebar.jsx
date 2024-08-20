@@ -22,6 +22,7 @@ const list = [
     { text: 'Marcas', to: '/brandList', icon: AddBoxIcon },
     { text: 'Calibres', to: '/caliberList', icon: AddBoxIcon },
     { text: 'Tipos Municiones', to: '/ammoTypeList', icon: AddBoxIcon },
+    { text: 'Municiones', to: '/createAmmo', icon: AddBoxIcon },
 ];
 
 const Sidebar = () => {

@@ -49,9 +49,7 @@ const AmmoTypeRegistrationForm = (props) => {
                 props.handleCancel();
             }
         } catch (err) {
-            console.log(err.response)
             const status = err.response.status ?? err.code;
-            console.log(status)
             switch(status) {
                 case 400:
                     Swal.fire({

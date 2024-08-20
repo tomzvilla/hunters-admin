@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { fetchCaliber } from '../../api/api';
 import { useQuery } from '@tanstack/react-query';
 import { DataGrid } from '@mui/x-data-grid';
@@ -15,20 +15,10 @@ const CaliberList = () => {
     const { isPending, error, data } = useQuery({
         queryKey: ['caliber'],
         queryFn: fetchCaliber,
+        select: data => { return data.map(row => ({ id: row._id, ...row })).sort((a, b) => a.size.localeCompare(b.size)) },
     })
 
-    const [formattedData, setFormattedData] = useState([]);
     const [showCreateForm, setShowCreateForm] = useState(false);
-
-    useEffect(() => {
-        if (data) {
-            const newData = data.map(row => ({
-                id: row._id,
-                ...row,
-            })).sort((a, b) => a.size.localeCompare(b.size));
-            setFormattedData(newData);
-        }
-    }, [data]);
 
     if(isPending) {
         return <Spinner loading={isPending} />
@@ -43,7 +33,7 @@ const CaliberList = () => {
             </Typography>
             <DataGrid
                 sx={{ fontSize: '1.2rem' }}
-                rows={formattedData}
+                rows={data}
                 columns={columns}
                 initialState={{
                         pagination: {
