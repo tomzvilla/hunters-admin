@@ -27,7 +27,7 @@ const BrandList = () => {
         return <p>ERROR</p>
     }
     return (
-        <div style={{ height: 700, width: 500, maxWidth: '100vw' }}>
+        <div style={{ height: '80%', width: 500, maxWidth: '100vw' }}>
             <Typography variant="h5" component="div" style={{ lineHeight: '1.5', marginBottom: '1rem' }}>
                 Lista de marcas 
             </Typography>

@@ -133,12 +133,12 @@ const AmmoRegistrationForm = (props) => {
     }
 
     return (
-            <Box sx={{  display: 'flex', flexDirection: 'column', alignItems: 'center', p: 6 }}>
-                <Typography variant="h4" component="h4" style={{ lineHeight: '3', marginTop: '2rem' }}>
+            <Box sx={{  display: 'flex', flexDirection: 'column', alignItems: 'center', p: 6, overflow: "hidden" }}>
+                <Typography variant="h4" component="h4" style={{ lineHeight: '2.5' }}>
                     Agregar una munición                   
                 </Typography>
                 <Paper elevation={12} sx={{ p: 4 }}>
-                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: 500, height: 660}}>
+                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, width: 500, height: 660 }}>
                         <FormControl fullWidth>
                             <InputLabel id="brand">Marca</InputLabel>
                             <Select

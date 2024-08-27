@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchAmmo } from '../api/api';
 import { DataGrid } from '@mui/x-data-grid';
 import { Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 import Spinner from './Spinner';
 
 const columns = [
@@ -12,11 +13,13 @@ const columns = [
     { field: 'ammoType', headerName: 'Tipo', width: 80 },
     { field: 'grammage', headerName: 'Gramaje', width: 70 },
     { field: 'amountPerBox', headerName: 'Caja', width: 70 },
-    { field: 'unitPrice', headerName: 'Precio USD', width: 100 },
-    { field: 'argPrice', headerName: 'Precio ARG', width: 100 },
+    { field: 'unitPrice', headerName: 'USD Unit.', width: 100 },
+    { field: 'finalPrice', headerName: 'USD Final', width: 100 },
+    { field: 'argPrice', headerName: 'ARG Final', width: 100 },
 ];
 
 const AmmoList = () => {
+    const defaultPageSize = useSelector(state => state.ui.defaultPageSize);
     const { isPending, error, data } = useQuery({
         queryKey: ['ammo'],
         queryFn: fetchAmmo,
@@ -29,6 +32,7 @@ const AmmoList = () => {
             grammage: row.grammage,
             amountPerBox: row.amountPerBox,
             unitPrice: row.unitPrice,
+            finalPrice: row.finalPrice,
             argPrice: row.argPrice,
         }))}
     })
@@ -40,7 +44,7 @@ const AmmoList = () => {
         return <p>ERROR</p>
     }
     return (
-        <div style={{ height: 700, width: 1200, maxWidth: '100vw' }}>
+        <div style={{ height: '80vh', width: '95%', maxWidth: '100vw' }}>
             <Typography variant="h4" component="div" style={{lineHeight: '1.5'}}>
                 Lista de precios | Municiones
             </Typography>
@@ -50,7 +54,7 @@ const AmmoList = () => {
                 columns={columns}
                 initialState={{
                     pagination: {
-                    paginationModel: { page: 0, pageSize: 20 },
+                    paginationModel: { page: 0, pageSize: defaultPageSize },
                     },
                 }}
                 pageSizeOptions={[10, 20]}

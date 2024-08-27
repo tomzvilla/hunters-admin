@@ -6,12 +6,13 @@ import { Dialog, DialogContent, DialogTitle, Typography } from '@mui/material';
 import CaliberRegistrationForm from '../Registrations/CaliberRegistrationForm';
 import Spinner from '../Spinner';
 import CustomToolbar from './CustomToolbar';
-
+import { useSelector } from 'react-redux';
 const columns = [
     { field: 'size', headerName: 'Nombre', width: 300 },
 ];
 
 const CaliberList = () => {
+    const defaultPageSize = useSelector(state => state.ui.defaultPageSize);
     const { isPending, error, data } = useQuery({
         queryKey: ['caliber'],
         queryFn: fetchCaliber,
@@ -27,7 +28,7 @@ const CaliberList = () => {
         return <p>ERROR</p>
     }
     return (
-        <div style={{ height: 700, width: 500, maxWidth: '100vw' }}>
+        <div style={{ height: '80vh', width: 500, maxWidth: '100vw' }}>
             <Typography variant="h5" component="div" style={{ lineHeight: '1.5', marginBottom: '1rem' }}>
                 Lista de calibres
             </Typography>
@@ -37,7 +38,7 @@ const CaliberList = () => {
                 columns={columns}
                 initialState={{
                         pagination: {
-                        paginationModel: { page: 0, pageSize: 15 },
+                        paginationModel: { page: 0, pageSize: defaultPageSize },
                     },
                 }}
                 pageSizeOptions={[10,15,20]}

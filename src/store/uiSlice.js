@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     sidebar: false,
+    defaultPageSize: 20,
 }
 
 const uiSlice = createSlice({
@@ -12,6 +13,9 @@ const uiSlice = createSlice({
     reducers: {
         showSidebar(state) {
             state.sidebar = !state.sidebar
+        },
+        setDefaultPageSize(state, action) {
+            state.defaultPageSize = action.payload;
         },
     }
 })

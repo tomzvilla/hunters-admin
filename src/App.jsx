@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // components
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
@@ -16,9 +16,14 @@ import AmmoTypeList from './components/Lists/AmmoTypeList';
 import BrandList from './components/Lists/BrandList';
 import CaliberList from './components/Lists/CaliberList';
 import AmmoRegistrationForm from './components/Registrations/AmmoRegistrationForm';
-
+import { uiActions } from './store/uiSlice';
+import useWindowDimensions from './hooks/useWindowDimensions';
 function App() {
   const user = useSelector(state => state.auth.user);
+  const { height, width } = useWindowDimensions();
+  const dispatch = useDispatch();
+  dispatch(uiActions.setDefaultPageSize(width < 1024 ? 10 : 20));
+
   return (
     <div className="app">
       <Navbar/>
